@@ -1,1 +1,58 @@
 
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using SPC_Project.Data;
+using SPC_Project.DTO;
+using SPC_Project.Model;
+using System.Collections.Generic;
+
+namespace SPC_Project.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ConfirmTenderController : ControllerBase
+    {
+        private IMapper _mapper;
+        private ConfirmTenderRepo _repo;
+
+        public ConfirmTenderController(IMapper mapper, ConfirmTenderRepo repo)
+        {
+            _mapper = mapper;
+            _repo = repo;
+        }
+
+        // Confirm a tender reply
+        [HttpPost("{id}/confirm")]
+        public ActionResult ConfirmTender(int id)
+        {
+            var tenderReply = _repo.GetTenderReplyByID(id);
+            if (tenderReply == null)
+                return NotFound("Tender reply not found.");
+
+            // Confirm the tender and add an entry to the ConfirmTender table
+            if (_repo.ConfirmTender(tenderReply))
+                return Ok("Tender confirmed successfully.");
+            else
+                return BadRequest("Failed to confirm the tender.");
+        }
+
+        // Get all confirmed tenders
+        [HttpGet("confirmed")]
+        public ActionResult<IEnumerable<DTOTenderReplyRead>> GetConfirmedTenders()
+        {
+            var confirmedTenders = _repo.GetConfirmedTenders();
+            return Ok(confirmedTenders); // Return confirmed tenders as they are in the ConfirmTender table
+        }
+
+        // Get a specific tender reply by ID
+        [HttpGet("{id}")]
+        public ActionResult<DTOTenderReplyRead> GetTenderReplyByID(int id)
+        {
+            var tender = _repo.GetTenderReplyByID(id);
+            if (tender != null)
+                return Ok(_mapper.Map<DTOTenderReplyRead>(tender));
+            else
+                return NotFound("Tender reply not found.");
+        }
+    }
+}
