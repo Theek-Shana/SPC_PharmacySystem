@@ -1,0 +1,128 @@
+﻿@page
+@model SPCMain.Pages.SupplierModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+            .btn:hover {
+                background: #218838;
+            }
+
+        .btn-warning {
+            background: #ffc107;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+            .btn-warning:hover {
+                background: #e0a800;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background: #f1f1f1;
+            transition: 0.3s ease;
+        }
+
+        
+
+        
+    </style>
+</head>
+<body>
+    <div id="supplierContainer" class="container">
+        <h2>Supplier Details</h2>
+        <a asp-page="AddSupplier" class="btn">Add New Supplier</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Supplier ID</th>
+                    <th>Supplier Name</th>
+                    <th>Supplier Address</th>
+                    <th>Supplier Phone Number</th>
+                    <th>Supplier Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+				@foreach (var supplier in Model.Supplier)
+                {
+                    <tr>
+                        <td>@supplier.SupplierId</td>
+                        <td>@supplier.SupplierName</td>
+                        <td>@supplier.SupplierAddress</td>
+                        <td>@supplier.SupplierPhoneNumber</td>
+                        <td>@supplier.SupplierEmail</td>
+                        <td>
+                            <a asp-page="EditSupplier" asp-route-id="@supplier.SupplierId" class="btn btn-warning">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

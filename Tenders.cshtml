@@ -1,0 +1,131 @@
+﻿@page
+@model SPCMain.Pages.TendersModel
+@{
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post A Tender</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 700px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 15px 10px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 15px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-update {
+            background-color: #28a745;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Post A Tender</h2>
+        <a asp-page="/Tenders/AddNewTender" class="btn btn-primary">Add New Tender</a>
+
+        <form method="post">
+            <table>
+                <tr>
+                    <td>Id</td>
+                    <td><input type="text" asp-for="Tender.TenderID" readonly /></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><input type="text" asp-for="Tender.TenderDescription" required /></td>
+                </tr>
+                <tr>
+                    <td>Value</td>
+                    <td><input type="text" asp-for="Tender.TenderValue" required /></td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td><input type="text" asp-for="Tender.TenderDate" required /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" asp-page-handler="EditTenders" class="btn btn-update">Update</button>
+                        <button type="submit" asp-page-handler="DeleteTenders" asp-route-id="@Model.Tender.TenderID" class="btn btn-delete">Delete</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

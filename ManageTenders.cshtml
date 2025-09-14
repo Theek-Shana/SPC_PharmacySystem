@@ -1,0 +1,168 @@
+﻿@page
+@model SPCMain.Pages.ManageTenderModel
+@{
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tender Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f9f9f9;
+        }
+
+        td {
+            font-size: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        
+
+        }
+    </style>
+</head>
+<body>
+    <div id="tendersContainer" class="container">
+        <h2>Tender Details</h2>
+        <a asp-page="AddNewTender" class="btn btn-primary">Add New Tender</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tender ID</th>
+                    <th>Tender Description</th>
+                    <th>Tender Value</th>
+                    <th>Tender Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tender in Model.Tenders)
+                {
+                    <tr>
+                        <td>@tender.TenderID</td>
+                        <td>@tender.TenderDescription</td>
+                        <td>@tender.TenderValue</td>
+                        <td>@tender.TenderDate</td>
+                        <td class="action-buttons">
+                            <a asp-page="EditTenders" asp-route-id="@tender.TenderID" class="btn btn-warning">Edit</a>
+                            <a asp-page="EditTenders" asp-route-id="@tender.TenderID" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div id="tendersContainer" class="container">
+        <h2>Tender Reply Details</h2>
+        
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Reply ID</th>
+                    <th>Brand</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Discounted Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tenderReply in Model.TenderReplies)
+                {
+                    <tr>
+                        <td>@tenderReply.TenderReplyId</td>
+                        <td>@tenderReply.Brand</td>
+                        <td>@tenderReply.Description</td>
+                        <td>@tenderReply.Price</td>
+                        <td>@tenderReply.DiscountedPrice</td>
+
+                        <td class="action-buttons">
+                            <a asp-page="confirm" asp-route-id="confirm" class="btn btn-warning">Buy Stock</a>
+                            <a asp-page="ManageTenders" asp-page-handler="Delete" asp-route-TenderReplyId="@tenderReply.TenderReplyId" class="btn btn-danger">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

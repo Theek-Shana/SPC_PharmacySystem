@@ -1,0 +1,102 @@
+﻿@page
+@model SPCMain.Pages.EditSupplierModel
+@{
+    ViewData["Title"] = "Update Supplier";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        margin-top: 10px;
+        text-decoration: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-update {
+        background: #28a745;
+    }
+
+    .btn-delete {
+        background: #dc3545;
+    }
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+</style>
+
+<div class="container">
+    <h2>Update Supplier</h2>
+    <form method="post">
+        <table>
+            <tr>
+				<td>Id</td>
+                <td><input type="text" required asp-for =Supplier.SupplierId></in></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" required asp-for="Supplier.SupplierName"></td>
+            </tr>
+            <tr>
+                <td>Supplier Address</td>
+                <td><input type="text" required asp-for="Supplier.SupplierAddress"></td>
+            </tr>
+            <tr>
+                <td>Supplier Phone Number</td>
+                <td><input type="number" required asp-for="Supplier.SupplierPhoneNumber"></td>
+            </tr>
+            <tr>
+                <td>Supplier Email</td>
+                <td><textarea cols="15" rows="3" asp-for="Supplier.SupplierEmail"></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" name="btnEdit" value="Update" class="btn btn-update">Update</button>
+                    <button type="submit" asp-page-handler="Delete" class="btn btn-delete">Delete</button>
+
+                    <input type="hidden" name="SupplierId" value="@Model.Supplier.SupplierId" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

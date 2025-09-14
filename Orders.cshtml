@@ -1,0 +1,118 @@
+﻿@page
+@model SPCMain.Pages.OrdersModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Orders Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f9f9f9;
+        }
+
+        td {
+            font-size: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="drugOrdersContainer" class="container">
+        <h2>Drug Orders</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Drug Name</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.drugOrders)
+                {
+                    <tr>
+                        <td>@order.Id</td>
+                        <td>@order.Name</td>
+                        <td>@order.Quantity</td>
+                        <td class="action-buttons">
+                            <a asp-page="SendOrders" asp-route-id="@order.Id" class="btn btn-warning">Send Orders</a>
+                            <a asp-page="DeleteOrder" asp-route-id="@order.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

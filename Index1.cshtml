@@ -1,0 +1,225 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Welcome To SPC Main Branch";
+}
+@if (Model.LowStockMedicines.Count > 0)
+{
+    <div class="message-box">
+        <div class="message-content">
+            <i class="fas fa-exclamation-triangle"></i> <strong>Low Stock Alert:</strong>
+            <ul>
+                @foreach (var med in Model.LowStockMedicines)
+                {
+                    <li>
+                        <strong>@med.Name</strong> -
+                        <span class="quantity">@med.Quantity</span> left
+                    </li>
+                }
+            </ul>
+            <div class="message-seen">✔ Seen</div>
+        </div>
+    </div>
+}
+
+@if (TempData["success"] != null)
+{
+    <div class="message-box success">
+        <div class="message-content">
+            <i class="fas fa-check-circle"></i> <strong>Success:</strong> @TempData["success"]
+            <div class="message-seen">✔ Seen</div>
+        </div>
+    </div>
+}
+
+@if (TempData["failure"] != null)
+{
+    <div class="message-box error">
+        <div class="message-content">
+            <i class="fas fa-times-circle"></i> <strong>Error:</strong> @TempData["failure"]
+            <div class="message-seen">✔ Seen</div>
+        </div>
+    </div>
+}
+
+<style>
+    /* Chat bubble style notification */
+    .message-box {
+        display: flex;
+        justify-content: flex-start;
+        margin: 15px auto;
+        width: fit-content;
+        max-width: 80%;
+        background: #f4f4f4;
+        border-radius: 12px;
+        box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px 15px;
+        position: relative;
+        font-family: Arial, sans-serif;
+    }
+
+    .message-content {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+    }
+
+    .message-box ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 5px 0 0;
+    }
+
+        .message-box ul li {
+            padding: 3px 0;
+        }
+
+    .message-box .quantity {
+        color: red;
+        font-weight: bold;
+    }
+
+    .message-seen {
+        font-size: 12px;
+        color: #888;
+        text-align: right;
+        margin-top: 5px;
+    }
+
+    /* Success Message */
+    .message-box.success {
+        background: #eaf8e6;
+        border-left: 5px solid #2ecc71;
+    }
+
+    /* Error Message */
+    .message-box.error {
+        background: #fdecea;
+        border-left: 5px solid #e74c3c;
+    }
+
+    /* Low Stock Message */
+    .message-box.warning {
+        background: #fff4d1;
+        border-left: 5px solid #f39c12;
+    }
+</style>
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 220px;
+        background: #2C3E50;
+        color: white;
+        padding: 20px;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background: #3498DB;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+            .sidebar .btn:hover {
+                background: #1F618D;
+            }
+
+    .content {
+        margin-left: 240px;
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        min-height: 100vh;
+    }
+
+    .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 80%;
+        max-width: 1200px;
+    }
+
+    h1 {
+        color: #2C3E50;
+        font-size: 32px;
+    }
+
+    .description {
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 1.6;
+        color: #555;
+        text-align: justify;
+    }
+
+    .main-image {
+        width: 100%;
+        max-width: 1200px;
+        height: auto;
+        margin: 20px 0;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="sidebar">
+    <h2>Menu</h2>
+    <a href="/supplier" class="btn">Supplier</a>
+    <a href="/ManageTenders" class="btn">Tenders</a>
+    <a href="/Medicine" class="btn">Medicines</a>
+    <a href="/Orders" class="btn">Manage Orders</a>
+</div>
+
+
+<div class="content">
+    <div class="container">
+        <h1>Welcome to SPC Main Branch</h1>
+        <img src="images/mainBranch.jpg" alt="SPC Main Branch" class="main-image" />
+
+        <p class="description">
+            The State Pharmaceuticals Corporation (SPC) is a key institution in Sri Lanka, responsible for ensuring the availability of high-quality medicines and medical supplies across the country.
+            Established to provide affordable healthcare solutions, SPC plays a vital role in importing, manufacturing, and distributing pharmaceutical products to hospitals, clinics, and pharmacies nationwide.
+        </p>
+
+        <p class="description">
+            At SPC, we are committed to maintaining the highest standards in healthcare services. Our team works tirelessly to ensure that all products meet strict quality and safety regulations.
+            With advanced supply chain management and strong partnerships with global pharmaceutical companies, SPC continues to be a trusted provider of essential medical products in Sri Lanka.
+        </p>
+
+        <div class="success-message"> <span>@TempData["success"]</span> </div>
+        <div class="failure-message"> <span>@TempData["failure"]</span> </div>
+    </div>
+</div>
