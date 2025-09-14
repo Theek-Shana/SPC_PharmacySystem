@@ -1,0 +1,99 @@
+﻿@page
+@model SPCMain.Pages.AddNewTender
+
+@{
+    ViewData["Title"] = "Add New Tender";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        margin-top: 10px;
+        text-decoration: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-update {
+        background: #28a745;
+    }
+
+    .btn-delete {
+        background: #dc3545;
+    }
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+</style>
+
+<div class="container">
+    <h2>Add New Tender</h2>
+    <form method="post">
+        <table>
+            
+            <tr>
+                <td>Order Details</td>
+                <td><input type="text" required asp-for="tender.TenderDescription"></td>
+            </tr>
+            <tr>
+                <td>Order Value</td>
+                <td><input type="text" required asp-for="tender.TenderValue"></td>
+            </tr>
+            <tr>
+             
+                <td>Submitted Date</td>
+                <td><textarea cols="15" rows="3" asp-for="tender.TenderDate"></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" name="btnEdit" value="Update" class="btn btn-update" />
+                    <input type="submit" name="btnDelete" value="Delete" class="btn btn-delete" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+
+        

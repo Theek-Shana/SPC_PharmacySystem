@@ -1,0 +1,20 @@
+﻿@page
+@model SPCMain.Pages.ConfirmModel
+
+@{
+    ViewData["Title"] = "Confirm Tender";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Status.StatusId" />  <!-- Hidden field to keep StatusId -->
+
+    <div class="form-group">
+        <label>
+            <input type="checkbox" asp-for="Status.IsAccept" /> Confirm Tender
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
