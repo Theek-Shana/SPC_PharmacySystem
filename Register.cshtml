@@ -1,0 +1,117 @@
+﻿@page
+@model SPCPublicWeb.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2 class="register-title">Register</h2>
+
+<form method="post">
+    <table>
+        
+         
+        <tr>
+            <td>Name</td>
+            <td><input type="text" required asp-for="newSupplier.SupplierName"></td>
+        </tr>
+        <tr>
+            <td>Supplier Address</td>
+            <td><input type="text" required asp-for="newSupplier.SupplierAddress"></td>
+        </tr>
+        <tr>
+            <td>Supplier Phone Number</td>
+            <td><input type="number" required asp-for="newSupplier.SupplierPhoneNumber"></td>
+        </tr>
+        <tr>
+            <td>Supplier Email</td>
+            <td><textarea cols="15" rows="3" asp-for="newSupplier.SupplierEmail"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" name="submit" value="Submit" class="submit-btn" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<style>
+    /* Page Title */
+    .register-title {
+        text-align: center;
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    /* Center the form */
+    form {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 10px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Style the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* Table cells */
+    td {
+        padding: 12px;
+        font-size: 16px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    /* Input fields */
+    input[type="text"],
+    input[type="number"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        /* Input focus effect */
+        input:focus,
+        textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+    /* Read-only input style */
+    input[readonly] {
+        background: #f0f0f0;
+        cursor: not-allowed;
+    }
+
+    /* Submit button */
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+        /* Hover effect on button */
+        .submit-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+</style>

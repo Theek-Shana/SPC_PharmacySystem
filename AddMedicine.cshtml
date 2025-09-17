@@ -1,8 +1,8 @@
 ﻿@page
-@model SPCMain.Pages.AddNewMedicine
-@{
+@model SPCPublicWeb.Pages.AddMedicineModel
 
-    ViewData["Title"] = "Add New Medicine";
+@{
+    ViewData["Title"] = "Add Medicine For SPC Stock";
 }
 
 <style>
@@ -66,10 +66,16 @@
 </style>
 
 <div class="container">
-    <h2>Add New Medicine</h2>
+    <h2>Add Medicine For SPC</h2>
+
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">@TempData["success"]</div>
+    }
+  
+
     <form method="post">
         <table>
-            
             <tr>
                 <td>Medicine Name</td>
                 <td><input type="text" required asp-for="Medicine.Name"></td>
@@ -79,21 +85,19 @@
                 <td><input type="text" required asp-for="Medicine.Description"></td>
             </tr>
             <tr>
-             
+                <td>Quantity</td>
+                <td><input type="number" required asp-for="Medicine.Quantity"></td>
+            </tr>
+            <tr>
                 <td>Price</td>
-                <td><textarea cols="15" rows="3" asp-for="Medicine.Price"></textarea></td>
+                <td><input type="number" step="0.01" required asp-for="Medicine.Price"></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" name="btnEdit" value="Update" class="btn btn-update" />
-                    <input type="submit" name="btnDelete" value="Delete" class="btn btn-delete" />
+                    <input type="submit" value="Add Medicine" class="btn btn-update" />
                 </td>
             </tr>
         </table>
     </form>
 </div>
-
-
-
-        

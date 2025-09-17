@@ -1,28 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Http; // Required for session handling
+using Microsoft.Extensions.Logging;
+using SPCPublicWeb.Pages.Model;
 
-namespace SPCMain.Pages
+namespace SPCPublicWeb.Pages
 {
-    public class LoginModel : PageModel
+    public class IndexModel : PageModel
     {
-        [BindProperty]
-        public string Username { get; set; }
+        private readonly ILogger<IndexModel> _logger;
 
-        [BindProperty]
-        public string Password { get; set; }
-
-        private const string AdminUsername = "admin";
-        private const string AdminPassword = "admin123";
-
-        public IActionResult OnPost()
+        public IndexModel(ILogger<IndexModel> logger)
         {
-            if (Username == AdminUsername && Password == AdminPassword)
-            {
-                return RedirectToPage("/Index1");
-            }
-
-            ModelState.AddModelError("", "Invalid username or password");
-            return Page();
+            _logger = logger;
         }
+
+   
     }
 }

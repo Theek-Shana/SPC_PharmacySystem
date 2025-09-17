@@ -6,27 +6,30 @@ using SPCPublicWeb.Pages.Model;
 
 namespace SPCPublicWeb.Pages
 {
-    public class AddMedicineModel : PageModel
+    public class RegisterModel : PageModel
     {
         [BindProperty]
-        public Medicine Medicine { get; set; }
+
+        public NewSupplier newSupplier{ get; set; }
 
         public async Task<IActionResult> OnPost()
         {
-            string url = "https://localhost:7167/api/Medicine";
+            string url = "https://localhost:7167/api/SPCSupplier";
             HttpClient client = new HttpClient();
-            var content = new StringContent(JsonSerializer.Serialize(Medicine), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonSerializer.Serialize(newSupplier), Encoding.UTF8, "application/json");
 
             HttpResponseMessage message = await client.PostAsync(url, content);
             if (message.IsSuccessStatusCode)
+
             {
-                TempData["success"] = "New Tender Added Successfully";
-                return RedirectToPage("SupplierDashboard");
+                TempData["success"] = "Added Sucessfully";
+                return RedirectToPage("Login");
             }
+
             else
             {
-                TempData["failure"] = "Failed to Add Tender";
-                return RedirectToPage("SupplierDashboard");
+                TempData["failure"] = "Fail to Add";
+                return RedirectToPage("Index");
             }
         }
     }

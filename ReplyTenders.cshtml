@@ -1,0 +1,239 @@
+﻿@page
+@model ReplyTendersModel
+
+@{
+    ViewData["Title"] = "Supplier Dashboard";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        background-color: #2C3E50;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .sidebar h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .btn {
+            display: block;
+            padding: 12px;
+            margin: 10px 0;
+            color: white;
+            text-decoration: none;
+            background-color: #34495E;
+            border-radius: 5px;
+            text-align: center;
+            transition: 0.3s ease-in-out;
+        }
+
+            .sidebar .btn:hover {
+                background-color: #1ABC9C;
+            }
+
+    /* Main Content */
+    .content {
+        margin-left: 270px;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1000px;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #2C3E50;
+        color: white;
+    }
+
+    /* Reply Button */
+    button {
+        background-color: #1ABC9C;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+        button:hover {
+            background-color: #16A085;
+        }
+
+    /* Reply Box */
+    .reply-box {
+        background: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        width: 400px;
+        z-index: 1000;
+    }
+
+        .reply-box h3 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .reply-box label {
+            font-weight: bold;
+            display: block;
+            margin: 8px 0 5px;
+        }
+
+        .reply-box input, .reply-box textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .reply-box .btn-submit {
+            width: 100%;
+            background-color: #1ABC9C;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .reply-box .btn-submit:hover {
+                background-color: #16A085;
+            }
+
+        .reply-box .btn-close {
+            background-color: #e74c3c;
+            margin-top: 10px;
+        }
+
+            .reply-box .btn-close:hover {
+                background-color: #c0392b;
+            }
+</style>
+
+<div class="sidebar">
+    <h2>Menu</h2>
+    <a href="SupplierDashboard" class="btn">Dashboard</a>
+    <a href="ReplyTenders" class="btn">Tenders</a>
+</div>
+
+<div class="content">
+    <div class="container">
+        <h1>Supplier Dashboard</h1>
+
+        @if (TempData["success"] != null)
+        {
+            <div style="color: green;">@TempData["success"]</div>
+        }
+        @if (TempData["failure"] != null)
+        {
+            <div style="color: red;">@TempData["failure"]</div>
+        }
+
+        <h2>Recent Tenders</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tender ID</th>
+                    <th>Description</th>
+                    <th>Value</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tender in Model.Tenders)
+                {
+                    <tr>
+                        <td>@tender.TenderID</td>
+                        <td>@tender.TenderDescription</td>
+                        <td>@tender.TenderValue</td>
+                        <td>@tender.TenderDate</td>
+                        <td>
+                            <button onclick="openReplyBox('@tender.TenderID')">Reply</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <form method="post">
+            <div class="reply-box" id="replyBox">
+                <h3>Reply to Tender</h3>
+
+                <input type="hidden" id="tenderId" name="TenderReply.TenderReplyId" />
+
+                <label for="brand">Brand</label>
+                <input type="text" id="brand" name="TenderReply.Brand" required />
+
+                <label for="productDescription">Description</label>
+                <textarea id="productDescription" name="TenderReply.Description" required></textarea>
+
+                <label for="price">Price</label>
+                <input type="number" id="price" name="TenderReply.Price" required />
+
+                <label for="discountPrice">Price for 100 Pieces</label>
+                <input type="number" id="discountPrice" name="TenderReply.DiscountedPrice" required />
+
+                <button type="submit" class="btn-submit">Submit Reply</button>
+                <button type="button" class="btn-close" onclick="closeReplyBox()">Close</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openReplyBox(tenderId) {
+        document.getElementById("tenderId").value = tenderId;
+        document.getElementById("replyBox").style.display = "block";
+    }
+
+    function closeReplyBox() {
+        document.getElementById("replyBox").style.display = "none";
+    }
+</script>
