@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace SPC_Warehouse
+namespace PharmacyC
 {
     public partial class Form1 : Form
     {
@@ -17,30 +18,20 @@ namespace SPC_Warehouse
             InitializeComponent();
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void btnConfirm_Click(object sender, EventArgs e)
         {
+            string username = txtUserName.Text;
+            string password = txtPassword.Text;
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnSubmit_Click(object sender, EventArgs e)
-        {
-            string username = textBox1.Text;
-            string password = textBox2.Text;
-
-           
-            if (username == "ware" && password == "house")
+  
+            if (username == "p" && password == "m")
             {
-               
+              
                 this.Hide();
 
-            
+                
 
-                WareHouse nextForm = new WareHouse();
+                Pharmacy nextForm = new Pharmacy();
                 nextForm.Show();
             }
             else
@@ -49,11 +40,5 @@ namespace SPC_Warehouse
                 MessageBox.Show("Invalid Username or Password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
-    
 }
