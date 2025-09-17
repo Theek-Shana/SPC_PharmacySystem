@@ -7,9 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace PharmacyC
+namespace SPC_ManufactorPlant
 {
     public partial class Form1 : Form
     {
@@ -18,27 +17,49 @@ namespace PharmacyC
             InitializeComponent();
         }
 
-        private void btnConfirm_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            string username = txtUserName.Text;
-            string password = txtPassword.Text;
 
-  
-            if (username == "p" && password == "m")
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
             {
+                string username = txtUsername.Text;
+                string password = txtPassword.Text;
+
               
-                this.Hide();
+                if (username == "theek" && password == "spc")
+                {
+               
+                    this.Hide();
 
-                
 
-                Pharmacy nextForm = new Pharmacy();
-                nextForm.Show();
+                    Manufactioring_Plant nextForm = new Manufactioring_Plant();
+                    nextForm.Show();
+                }
+                else
+                {
+                   
+                    MessageBox.Show("Invalid Username or Password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
-            {
-                
-                MessageBox.Show("Invalid Username or Password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

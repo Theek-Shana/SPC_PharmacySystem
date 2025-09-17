@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PharmacyC
+namespace SPC_ManufactorPlant
 {
     internal static class Program
     {
