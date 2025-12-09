@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SPCMain.Pages
-{
+{ 
     public class EditSupplierModel : PageModel
     {
         private readonly HttpClient _client;
@@ -79,3 +79,4 @@ namespace SPCMain.Pages
 
     }
 }
+
