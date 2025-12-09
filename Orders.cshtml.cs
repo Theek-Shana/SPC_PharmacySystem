@@ -12,7 +12,7 @@ namespace SPCMain.Pages
 {
     public class OrdersModel : PageModel
     {
-        private readonly ILogger<OrdersModel> _logger;
+        private readonly ILogger<OrdersModel> _logger; 
         public List<DrugOrder> drugOrders { get; set; }
       
 
@@ -57,3 +57,4 @@ namespace SPCMain.Pages
         }
     }
 }
+
