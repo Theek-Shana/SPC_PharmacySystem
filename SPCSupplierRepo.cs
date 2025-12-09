@@ -1,4 +1,4 @@
-﻿using SPC_Project.Model;
+ ﻿using SPC_Project.Model;
 using System.Collections;
 namespace SPC_Project.Data
 {
@@ -69,3 +69,4 @@ namespace SPC_Project.Data
         }
     }
 }
+
