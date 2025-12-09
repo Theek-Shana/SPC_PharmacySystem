@@ -11,8 +11,9 @@ namespace SPC_Project.Profiles
         {
             CreateMap<Medicine, DTOMedicineRead>();
             CreateMap<DTOMedicineWrite, Medicine>();
-        }
+        } 
 
 
     }
 }
+
