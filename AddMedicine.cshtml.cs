@@ -9,7 +9,7 @@ namespace SPCPublicWeb.Pages
     public class AddMedicineModel : PageModel
     {
         [BindProperty]
-        public Medicine Medicine { get; set; }
+        public Medicine Medicine { get; set; } 
 
         public async Task<IActionResult> OnPost()
         {
@@ -31,3 +31,4 @@ namespace SPCPublicWeb.Pages
         }
     }
 }
+
