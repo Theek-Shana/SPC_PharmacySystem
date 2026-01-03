@@ -15,7 +15,7 @@ namespace SPC_Project.Data
         }
 
         // Save changes to the database
-        public bool Save()
+        public bool Save() 
         {
             return _dbContext.SaveChanges() > 0;
         }
@@ -49,3 +49,4 @@ namespace SPC_Project.Data
         }
     }
 }
+
