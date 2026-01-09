@@ -10,3 +10,5 @@ namespace SPC_Project.DTO
         public decimal Price { get; set; }
     }
 }
+
+ 
