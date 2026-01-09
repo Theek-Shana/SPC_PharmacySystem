@@ -24,7 +24,7 @@ namespace SPC_Project.Data
         public bool ConfirmTender(TenderReplys tenderReply)
         {
             if (tenderReply == null)
-                return false;
+                return false; 
 
             // Create a ConfirmTender entry to track confirmation
             var confirmTender = new ConfirmTender
@@ -49,5 +49,6 @@ namespace SPC_Project.Data
         }
     }
 }
+
 
 
