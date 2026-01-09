@@ -18,7 +18,7 @@ namespace SPC_Project.Data
         public bool Save() 
         {
             return _dbContext.SaveChanges() > 0;
-        }
+        } 
 
         // Confirm a tender reply
         public bool ConfirmTender(TenderReplys tenderReply)
@@ -49,4 +49,5 @@ namespace SPC_Project.Data
         }
     }
 }
+
 
