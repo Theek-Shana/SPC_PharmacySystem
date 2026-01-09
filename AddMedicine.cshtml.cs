@@ -19,7 +19,7 @@ namespace SPCPublicWeb.Pages
 
             HttpResponseMessage message = await client.PostAsync(url, content);
             if (message.IsSuccessStatusCode)
-            {
+            { 
                 TempData["success"] = "New Tender Added Successfully";
                 return RedirectToPage("SupplierDashboard");
             }
@@ -31,4 +31,5 @@ namespace SPCPublicWeb.Pages
         }
     }
 }
+
 
