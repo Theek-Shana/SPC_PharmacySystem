@@ -40,7 +40,7 @@ namespace SPCMain.Pages
                 }
             }
 
-            return Page();
+            return Page(); 
         }
 
         public async Task<IActionResult> OnPostDelete(int tenderReplyID)
@@ -66,3 +66,4 @@ namespace SPCMain.Pages
 
     }
 }
+
