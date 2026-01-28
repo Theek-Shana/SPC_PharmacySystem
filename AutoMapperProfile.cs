@@ -6,7 +6,7 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        // Define mapping configurations
+        // Define mapping configurationss
         CreateMap<DTOSPCTenderRequestWrite, TenderRequest>();
         CreateMap<TenderRequest, DTOSPCTenderRequestRead>();
     }
@@ -15,3 +15,4 @@ public class AutoMapperProfile : Profile
  
 
  
+
