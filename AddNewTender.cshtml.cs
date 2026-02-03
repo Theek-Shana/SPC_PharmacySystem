@@ -16,7 +16,7 @@
 
             public async Task<IActionResult> OnPost()
             {
-                string url = "https://localhost:7167/api/SPCTenderRequest";
+                string url = "https://localhost:7167/api/SPCTenderRequest";  
                 HttpClient client = new HttpClient();
                 var content = new StringContent(JsonSerializer.Serialize(tender), Encoding.UTF8, "application/json");
 
@@ -36,5 +36,6 @@
             }
         }
     }
+
 
 
